@@ -1,19 +1,19 @@
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { DATE_FORMAT } from '../../const';
-import { getLanguage } from '../../store/selectors';
-import { News } from '../../types/news';
+import { getIsDataLoaded, getLanguage, getNews } from '../../store/selectors';
 import { createMarkup, formatDate } from '../../utils/common';
 import { Container } from '../container/container';
+import { NotFoundScreen } from '../not-found-screen/not-found-screen';
 import styles from './news-item.module.scss';
 
-type NewsPropsType = {
-  newsItem?: News;
-}
-
-export function NewsItem(props: NewsPropsType):JSX.Element {
+export function NewsItem():JSX.Element {
   const language = useSelector(getLanguage);
+  const {id} = useParams();
+  const newsItem = useSelector(getNews).find((item) => item.id === Number(id));
+  const isDataLoaded = useSelector(getIsDataLoaded);
 
-  if (!props.newsItem) {
+  if (!isDataLoaded) {
     return (
       <main>
         <Container className={styles.container}>
@@ -26,7 +26,13 @@ export function NewsItem(props: NewsPropsType):JSX.Element {
     );
   }
 
-  const {date, title, lead, imageBig} = props.newsItem;
+  if (!newsItem) {
+    return (
+      <NotFoundScreen />
+    );
+  }
+
+  const {date, title, lead, imageBig} = newsItem;
   return (
     <main>
       <Container className={styles.container}>

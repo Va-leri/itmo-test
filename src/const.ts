@@ -27,5 +27,5 @@ export const DEFAULT_API_PARAMS = {
 
 export enum AppRoute {
   Main = '/',
-  News = '/news',
+  News = 'news',
 }

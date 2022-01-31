@@ -1,16 +1,19 @@
 import { Route, Routes } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import { MainScreen } from '../main-screen/main-screen';
-import { NewsScreen } from '../news-screen/news-screen';
+import { Layout } from '../layout/layout';
+import { Main } from '../main/main';
+import { NewsItem } from '../news-item/news-item';
 import { NotFoundScreen } from '../not-found-screen/not-found-screen';
 
 
 function App(): JSX.Element {
   return (
     <Routes>
-      <Route path={AppRoute.Main} element={<MainScreen />} />
-      <Route path={`${AppRoute.News}/:id`} element={<NewsScreen />} />
-      <Route path='*' element={<NotFoundScreen />} />
+      <Route path={AppRoute.Main} element={<Layout />} >
+        <Route index element={<Main />} />
+        <Route path={`${AppRoute.News}/:id`} element={<NewsItem />} />
+        <Route path='*' element={<NotFoundScreen />} />
+      </Route>
     </Routes>
   );
 }

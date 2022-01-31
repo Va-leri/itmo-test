@@ -1,12 +1,14 @@
 import { Fragment } from 'react';
+import { Outlet } from 'react-router-dom';
 import { Header } from '../header/header';
-import { Main } from '../main/main';
 
-export function MainScreen(): JSX.Element {
+export function Layout(): JSX.Element {
   return (
     <Fragment>
       <Header></Header>
-      <Main></Main>
+
+      <Outlet />
+
     </Fragment>
   );
 }
