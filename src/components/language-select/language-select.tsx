@@ -41,8 +41,8 @@ export function LanguageSelect(props: LanguageSelectPropsType): JSX.Element {
       <label className={`${styles.btn} ${language === Language.Rus ? styles.btn__rus : styles.btn__eng}`} htmlFor="language-checkbox">
         <span>{language === Language.Rus ? 'Рус' : 'Eng'}</span>
       </label>
-      <input className={`visually-hidden ${styles.toggle}`} type="checkbox" id="language-checkbox" checked={isChecked} onClick={onToggleClick}/>
-      <ul className={styles.options_list} onClick={handleLangChange}>
+      <input className={`visually-hidden ${styles.toggle}`} type="checkbox" id="language-checkbox" checked={isChecked} onChange={onToggleClick}/>
+      <ul className={styles.options_list} onChange={handleLangChange}>
         <li>
           <input className="visually-hidden" id="language-rus-option" type="radio" name="language" value={Language.Rus} />
           <label className={`${styles.option} ${styles.option__rus}`} htmlFor="language-rus-option">
